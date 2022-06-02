@@ -1,0 +1,102 @@
+<div>
+	<p>Organizations</p>
+	<div class="spinner-container" *ngIf="organizationDataSource.loading$ | async">
+		<mat-spinner></mat-spinner>
+  </div>
+
+	<mat-table [dataSource]="organizationDataSource.data[1]" matSort matSortActive="name" matSortDirection="asc" matSortDisableClear class="customMatTable">
+
+		<!--- Note that these columns can be defined in any order.
+			  The actual rendered columns are set as a property on the row definition" -->
+	  
+		<ng-container matColumnDef="name">
+		  <mat-header-cell *matHeaderCellDef mat-sort-header class="matTableHeader"> Name </mat-header-cell>
+		  <mat-cell *matCellDef="let organization"> {{organization.name}} </mat-cell>
+		</ng-container>
+	  
+		<ng-container matColumnDef="department">
+		  <mat-header-cell *matHeaderCellDef mat-sort-header class="matTableHeader"> Department </mat-header-cell>
+		  <mat-cell *matCellDef="let organization"> {{organization.department}} </mat-cell>
+		</ng-container>
+	  
+		<ng-container matColumnDef="address">
+		  <mat-header-cell *matHeaderCellDef mat-sort-header class="matTableHeader"> Address </mat-header-cell>
+		  <mat-cell *matCellDef="let organization"> {{organization.address}} </mat-cell>
+		</ng-container>
+		
+		<ng-container matColumnDef="zip">
+		  <mat-header-cell *matHeaderCellDef mat-sort-header class="matTableHeader"> ZIP </mat-header-cell>
+		  <mat-cell *matCellDef="let organization"> {{organization.zip}} </mat-cell>
+		</ng-container>
+		
+		<ng-container matColumnDef="city">
+		  <mat-header-cell *matHeaderCellDef mat-sort-header class="matTableHeader"> City </mat-header-cell>
+		  <mat-cell *matCellDef="let organization"> {{organization.city}} </mat-cell>
+		</ng-container>
+	  
+		<mat-header-row *matHeaderRowDef="displayedOrganizationColumns"></mat-header-row>
+		<mat-row *matRowDef="let row; columns: displayedOrganizationColumns;" class="customMatRow" routerLink="/detail/{{row._rid}}"></mat-row>
+	</mat-table>
+
+	<mat-paginator [length]="organizationDataSource.totalEntries" [pageSize]="pageSize" showFirstLastButtons></mat-paginator>
+
+</div>
+
+<div>
+	<p>People</p>
+	<div class="spinner-container" *ngIf="peopleDataSource.loading$ | async">
+		<mat-spinner></mat-spinner>
+  </div>
+
+	<mat-table [dataSource]="peopleDataSource.data[1]" matSort matSortActive="lastName" matSortDirection="asc" matSortDisableClear class="customMatTable">
+
+		<!--- Note that these columns can be defined in any order.
+			  The actual rendered columns are set as a property on the row definition" -->
+	  
+		<ng-container matColumnDef="prefix">
+		  <mat-header-cell *matHeaderCellDef mat-sort-header class="matTableHeader"> Prefix </mat-header-cell>
+		  <mat-cell *matCellDef="let person"> {{person.prefix}} </mat-cell>
+		</ng-container>
+	  
+		<ng-container matColumnDef="firstName">
+		  <mat-header-cell *matHeaderCellDef mat-sort-header class="matTableHeader"> Firstname </mat-header-cell>
+		  <mat-cell *matCellDef="let person"> {{person.firstName}} </mat-cell>
+		</ng-container>
+	  
+		<ng-container matColumnDef="lastName">
+		  <mat-header-cell *matHeaderCellDef mat-sort-header class="matTableHeader"> Lastname </mat-header-cell>
+		  <mat-cell *matCellDef="let person"> {{person.lastName}} </mat-cell>
+		</ng-container>
+		
+		<ng-container matColumnDef="suffix">
+		  <mat-header-cell *matHeaderCellDef mat-sort-header class="matTableHeader"> Suffix </mat-header-cell>
+		  <mat-cell *matCellDef="let person"> {{person.suffix}} </mat-cell>
+		</ng-container>
+		
+		<ng-container matColumnDef="birthDate">
+		  <mat-header-cell *matHeaderCellDef mat-sort-header class="matTableHeader"> Birthdate </mat-header-cell>
+		  <mat-cell *matCellDef="let person"> {{person.birthDate}} </mat-cell>
+		</ng-container>
+	  
+		<ng-container matColumnDef="position">
+		  <mat-header-cell *matHeaderCellDef mat-sort-header class="matTableHeader"> Position </mat-header-cell>
+		  <mat-cell *matCellDef="let person"> {{person.position}} </mat-cell>
+		</ng-container>
+		
+		<ng-container matColumnDef="phone">
+		  <mat-header-cell *matHeaderCellDef mat-sort-header class="matTableHeader"> Phone </mat-header-cell>
+		  <mat-cell *matCellDef="let person"> {{person.phone}} </mat-cell>
+		</ng-container>
+		
+		<ng-container matColumnDef="email">
+		  <mat-header-cell *matHeaderCellDef mat-sort-header class="matTableHeader"> Email </mat-header-cell>
+		  <mat-cell *matCellDef="let person"> {{person.email}} </mat-cell>
+		</ng-container>
+		
+		<mat-header-row *matHeaderRowDef="displayedPersonColumns"></mat-header-row>
+		<mat-row *matRowDef="let row; columns: displayedPersonColumns;" class="customMatRow" routerLink="/detail/{{row._rid}}"></mat-row>
+	</mat-table>
+
+	<mat-paginator [length]="peopleDataSource.totalEntries" [pageSize]="pageSize" showFirstLastButtons></mat-paginator>
+
+</div>

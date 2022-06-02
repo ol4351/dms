@@ -1,0 +1,48 @@
+<div class="login" fxLayout fxLayoutAlign="space-around">
+	<div class="container">
+		<div class="loginHeader">
+			<h2>DMS</h2>
+		</div>
+		<alert fxLayout fxLayoutAlign="center"></alert>
+		<form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+			<div class="form-group">
+				<label class="loginLabel" for="username" i18n>Username</label>
+				<div class="inputField">
+					<p>
+						<span class="inputDecoTop"></span>
+						<span class="inputDecoBottom"></span>
+						<input type="text" formControlName="username" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.username.errors }" />
+					</p>
+				</div>
+				<div *ngIf="submitted && f.username.errors" class="invalid-feedback">
+					<div *ngIf="f.username.errors.required" i18n>Username is required</div>
+				</div>
+			</div>
+			<div class="form-group">
+			<label class="loginLabel" for="password" i18n>Password</label>
+			<div class="inputField">
+				<p>
+					<span class="inputDecoTop"></span>
+					<span class="inputDecoBottom"></span>
+					<input type="password" formControlName="password" class="form-control" [ngClass]="{ 'is-invalid': submitted && f.password.errors }" />
+				</p>
+			</div>
+				<div *ngIf="submitted && f.password.errors" class="invalid-feedback">
+					<div *ngIf="f.password.errors.required" i18n>Password is required</div>
+				</div>
+			</div>
+			<div fxLayout fxLayoutAlign="space-between center" class="customDiv" style="margin-bottom: 1rem;">
+				<a class="white" (click)="onSubmit()">
+					<p><span class="bg"></span><span class="base"></span><span class="text" i18n>Login</span></p>
+				</a>
+				<div>
+					<label for="language" i18n style="color: #ece8e1;">Language</label>
+					<select [(ngModel)]="selectedLanguage" [ngModelOptions]="{standalone: true}" class="customSelect" id="language">
+						<option *ngFor="let language of availableLanguages" [ngValue]="language">{{language.name}}</option>
+					</select>
+				</div>
+			</div>
+		</form>
+	</div>
+</div>
+

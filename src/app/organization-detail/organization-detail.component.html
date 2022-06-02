@@ -1,0 +1,99 @@
+<div style="margin-top: 56px;" fxLayout fxLayoutAlign="center center">
+	<h2 *ngIf="organizationId != 0" i18n>Organization overview</h2>
+	<h2 *ngIf="organizationId == 0" i18n>Organization creation</h2>
+</div>
+
+<div fxLayout fxLayoutAlign="center" *ngIf="!organizationLoaded">
+	<a class="white" (click)="goBack()">
+		<p><span class="bg"></span><span class="base"></span><span class="text" i18n>Go back</span></p>
+	</a>
+</div>
+
+<div fxLayout fxLayoutAlign="center" *ngIf="organizationLoaded">
+	<div class="organizationCard">
+		<h4 style="margin-left: 5px; font-weight: 500;" i18n>Organization details</h4>
+		<form>
+			<div fxLayout="row" style="margin-left: 5px; margin-right: 5px;">
+				<div fxFlex="100%">
+					<label for="name" i18n>Name</label>
+					<input [(ngModel)]="name" class="longInput" name="name" type="text" id="name">
+				</div>
+			</div>
+			 
+			<div fxLayout="row" style="margin-left: 5px; margin-right: 5px;">
+				<div fxFlex="100%">
+					<label for="department" i18n>Department</label>
+					<input [(ngModel)]="department" class="longInput" name="department" type="text" id="department">
+				</div>
+			</div>
+			
+			<div fxLayout="row" style="margin-left: 5px; margin-right: 5px;">
+				<div fxFlex="100%">
+					<label for="shortName" i18n>Short name</label>
+					<input [(ngModel)]="shortName" class="longInput" name="shortName" type="text" id="shortName">
+				</div>
+			</div>
+			
+			<div fxLayout="row" fxLayoutAlign="space-between" style="margin-left: 5px; margin-right: 5px;">
+				<div fxFlex="60%">
+					<label for="street" i18n>Address street</label>
+					<input [(ngModel)]="street" class="longInput" name="street" type="text" id="street">
+				</div>
+				<div fxFlex="18%">
+					<label for="number1" i18n>Number 1</label>
+					<input [(ngModel)]="streetNum1" class="longInput" name="number1" type="number" id="number1">
+				</div>
+				<div fxFlex="18%">
+					<label for="number2" i18n>Number 2</label>
+					<input [(ngModel)]="streetNum2" class="longInput" name="number2" type="text" id="number2">
+				</div>
+			</div>
+			
+			<div fxLayout="row" fxLayoutAlign="space-between" style="margin-left: 5px; margin-right: 5px;">
+				<div fxFlex="25%">
+					<label for="zip" i18n>ZIP</label>
+					<input [(ngModel)]="zip" class="longInput" name="zip" type="number" id="zip">
+				</div>
+				<div fxFlex="73%">
+					<label for="city" i18n>City</label>
+					<input [(ngModel)]="city" class="longInput" name="city" type="text" id="city">
+				</div>
+			</div>
+			
+			<div fxLayout="row" fxLayoutAlign="space-between" style="margin-left: 5px; margin-right: 5px;">
+				<div fxFlex="32%">
+					<label for="street" i18n>Organization ID</label>
+					<input [(ngModel)]="id" class="longInput" name="id" type="number" id="id">
+				</div>
+				<div fxFlex="32%">
+					<label for="taxID" i18n>Tax ID</label>
+					<input [(ngModel)]="taxID" class="longInput" name="taxID" type="number" id="taxID">
+				</div>
+				<div fxFlex="32%">
+					<label for="vatID" i18n>Vat ID</label>
+					<input [(ngModel)]="vatID" class="longInput" name="vatID" type="number" id="vatID">
+				</div>
+			</div>
+			
+			<div fxLayout fxLayoutAlign="space-between">
+				<a class="white" (click)="goBack()">
+					<p><span class="bg"></span><span class="base"></span><span class="text" i18n>Cancel</span></p>
+				</a>
+				<div fxFlex="50%">
+					<div fxLayout="row" fxLayoutAlign="end">
+						<a class="white" (click)="deleteOrganization()" *ngIf="organizationId != 0">
+							<p><span class="bg"></span><span class="base"></span><span class="text" i18n>Delete</span></p>
+						</a>
+						<a class="white" (click)="saveOrganization()">
+							<p><span class="bg"></span><span class="base"></span><span class="text" i18n>Save</span></p>
+						</a>
+					</div>
+				</div>
+			</div>
+			
+		</form>
+	</div>
+</div>
+
+<div style="margin-top: 600px;">
+</div>

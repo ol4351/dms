@@ -1,0 +1,106 @@
+<div>
+	<h2>Document Repository</h2>
+</div>
+
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+
+<div>
+	<div fxLayout fxLayoutAlign="start center" >
+		<div fxFlex="5%">Show</div>
+		<select [(ngModel)]="selectedActivity" (change)="loadDocumentsPage()" class="customSelect" fxFlex="12%">
+			<option selected [ngValue]="null">All documents</option>
+			<option *ngFor="let activity of filterByActivity" [ngValue]="activity">{{activity.name}}</option>
+		</select>
+		<select [(ngModel)]="selectedCategory" (change)="loadDocumentsPage()" class="customSelect" fxFlex="12%">
+			<option selected [ngValue]="null">All categories</option>
+			<option *ngFor="let category of filterByCategory" [ngValue]="category">{{category.name}}</option>
+		</select>
+		<label class="container" fxFlex="15%">show processed
+		  <input [(ngModel)]="showProcessed" (change)="loadDocumentsPage()" type="checkbox">
+		  <span class="checkmark"></span>
+		</label>
+		<mat-form-field fxFlex="17%">
+			<input matInput type="text" placeholder="Find..." #input>
+		</mat-form-field>
+		<div fxFlex="27%" style="text-align: right;">
+			<button class="customButton" routerLink="/detail/0">Create new document</button>
+		</div>
+	</div>
+</div>
+
+<div>
+
+	<div class="spinner-container" *ngIf="dataSource.loading$ | async">
+		<mat-spinner></mat-spinner>
+  </div>
+
+	<mat-table [dataSource]="dataSource.data" matSort matSortActive="_rid" matSortDirection="asc" matSortDisableClear class="customMatTable">
+
+		<!--- Note that these columns can be defined in any order.
+			  The actual rendered columns are set as a property on the row definition" -->
+	  
+		<ng-container matColumnDef="selected">
+		  <mat-header-cell *matHeaderCellDef>
+				<mat-checkbox 
+					(change)="$event ? masterToggle() : null"
+					[checked]="selection.hasValue() && isAllSelected()"
+					[indeterminate]="selection.hasValue() && !isAllSelected()"
+					[aria-label]="checkboxLabel()">
+				</mat-checkbox>
+			</mat-header-cell>
+		  <mat-cell *matCellDef="let row">
+				<mat-checkbox (click)="$event.stopPropagation()"
+					(change)="$event ? selection.toggle(row) : null"
+					[checked]="selection.isSelected(row)"
+					[aria-label]="checkboxLabel(row)">
+				</mat-checkbox>
+			</mat-cell>
+		</ng-container>
+		
+		<ng-container matColumnDef="dateCreated">
+		  <mat-header-cell *matHeaderCellDef mat-sort-header class="matTableHeader"> Created on </mat-header-cell>
+		  <mat-cell *matCellDef="let document"> {{document.dateCreated}} </mat-cell>
+		</ng-container>
+	  
+		<ng-container matColumnDef="description">
+		  <mat-header-cell *matHeaderCellDef mat-sort-header class="matTableHeader"> Description </mat-header-cell>
+		  <mat-cell *matCellDef="let document"> {{document.description}} </mat-cell>
+		</ng-container>
+	  
+		<ng-container matColumnDef="comment">
+		  <mat-header-cell *matHeaderCellDef mat-sort-header class="matTableHeader"> Comment </mat-header-cell>
+		  <mat-cell *matCellDef="let document"> {{document.comment}} </mat-cell>
+		</ng-container>
+		
+		<ng-container matColumnDef="isProcessed">
+		  <mat-header-cell *matHeaderCellDef mat-sort-header class="matTableHeader"> Is processed </mat-header-cell>
+		  <mat-cell *matCellDef="let document"> {{document.isProcessed}} </mat-cell>
+		</ng-container>
+		
+		<ng-container matColumnDef="typeNameLo">
+		  <mat-header-cell *matHeaderCellDef mat-sort-header class="matTableHeader"> Type </mat-header-cell>
+		  <mat-cell *matCellDef="let document"> {{document.typeNameLo}} </mat-cell>
+		</ng-container>
+	  
+		<ng-container matColumnDef="activityName">
+		  <mat-header-cell *matHeaderCellDef mat-sort-header class="matTableHeader"> Activity </mat-header-cell>
+		  <mat-cell *matCellDef="let document"> {{document.activityName}} </mat-cell>
+		</ng-container>
+	  
+		<ng-container matColumnDef="userCreatedNickName">
+		  <mat-header-cell *matHeaderCellDef mat-sort-header class="matTableHeader"> Created by </mat-header-cell>
+		  <mat-cell *matCellDef="let document"> {{document.userCreatedNickName}} </mat-cell>
+		</ng-container>
+	  
+		<ng-container matColumnDef="budgetTotal">
+		  <mat-header-cell *matHeaderCellDef mat-sort-header class="matTableHeader"> Total budget </mat-header-cell>
+		  <mat-cell *matCellDef="let document"> {{document.budgetTotal}} </mat-cell>
+		</ng-container>
+	  
+		<mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+		<mat-row *matRowDef="let row; columns: displayedColumns;" class="customMatRow" routerLink="/detail/{{row._rid}}"></mat-row>
+	</mat-table>
+
+	<mat-paginator [length]="dataSource.totalEntries" [pageSize]="selectedPageSize" [pageSizeOptions]="pageSizeOptions" showFirstLastButtons></mat-paginator>
+</div>

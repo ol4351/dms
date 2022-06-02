@@ -1,0 +1,84 @@
+<div style="margin-top: 56px;" fxLayout fxLayoutAlign="center center">
+	<h2 style="text-align: center;" *ngIf="personId != 0" i18n>Person overview</h2>
+	<h2 style="text-align: center;" *ngIf="personId == 0" i18n>Person creation</h2>
+</div>
+
+<div fxLayout fxLayoutAlign="center" *ngIf="!personLoaded">
+	<a class="white" (click)="goBack()">
+		<p><span class="bg"></span><span class="base"></span><span class="text" i18n>Go back</span></p>
+	</a>
+</div>
+
+<div fxLayout fxLayoutAlign="center" *ngIf="personLoaded">
+
+	<div class="personCard">
+		<h4 style="margin-left: 5px; font-weight: 500;" i18n>Person details</h4>
+		<form>
+			<div fxLayout="row" style="margin-left: 5px; margin-right: 5px;">
+				<div fxFlex="30%">
+					<label for="prefix" i18n>Name prefix</label>
+					<input [(ngModel)]="prefix" class="shortInput" name="prefix" type="text" id="prefix">
+				</div>
+			</div>
+			
+			<div fxLayout="row" fxLayoutAlign="space-between" style="margin-left: 5px; margin-right: 5px;">
+				<div fxFlex="49%">
+					<label for="firstName" i18n>First name</label>
+					<input [(ngModel)]="firstName" class="longInput" name="firstName" type="text" id="firstName">
+				</div>
+				<div fxFlex="49%">
+					<label for="lastName" i18n>Last name</label>
+					<input [(ngModel)]="lastName" class="longInput" name="lastName" type="text" id="lastName">
+				</div>
+			</div>
+			
+			<div fxLayout="row" style="margin-left: 5px; margin-right: 5px;">
+				<div fxFlex="30%">
+					<label for="suffix" i18n>Name suffix</label>
+					<input [(ngModel)]="suffix" class="shortInput" name="suffix" type="text" id="suffix">
+				</div>
+			</div>
+			
+			<div fxLayout="row" fxLayoutAlign="space-between" style="margin-left: 5px; margin-right: 5px;">
+				<div fxFlex="65%">
+					<label for="position" i18n>Position</label>
+					<input [(ngModel)]="position" class="longInput" name="position" type="text" id="position">
+				</div>
+				<div fxFlex="33%">
+					<label for="birthdate" i18n>Birthdate</label>
+					<input [(ngModel)]="birthDate" class="longInput" name="birthdate" type="date" id="birthdate" style="height: 1.64rem">
+				</div>
+			</div>
+			
+			<div style="margin-left: 5px; margin-right: 5px;">
+				<label for="phone" i18n>Phone number</label>
+				<input [(ngModel)]="phone" class="longInput" name="phone" type="text" id="phone">
+			</div>
+			
+			<div style="margin-left: 5px; margin-right: 5px;">
+				<label for="email" i18n>Email</label>
+				<input [(ngModel)]="email" class="longInput" name="email" type="text" id="email">
+			</div>
+			
+			<div fxLayout fxLayoutAlign="space-between">
+				<a class="white" (click)="goBack()">
+					<p><span class="bg"></span><span class="base"></span><span class="text" i18n>Cancel</span></p>
+				</a>
+				<div fxFlex="50%">
+					<div fxLayout="row" fxLayoutAlign="end">
+						<a class="white" (click)="deletePerson()" *ngIf="personId != 0">
+							<p><span class="bg"></span><span class="base"></span><span class="text" i18n>Delete</span></p>
+						</a>
+						<a class="white" (click)="savePerson()">
+							<p><span class="bg"></span><span class="base"></span><span class="text" i18n>Save</span></p>
+						</a>
+					</div>
+				</div>
+			</div>
+			
+		</form>
+	</div>
+</div>
+
+<div style="margin-top: 600px;">
+</div>

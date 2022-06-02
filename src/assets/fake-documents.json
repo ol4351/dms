@@ -1,0 +1,32 @@
+[
+  {
+    "id": "202031",
+    "file": "x.pdf",
+    "description": "Marketing material",
+	"created": "1.1.2000 by SKLUF",
+	"project": "Congress in Poprad",
+	"value": 350,
+	"category": "Invoices",
+	"status": "Waiting for approval"
+  },
+  {
+    "id": "202032",
+    "file": "y.pdf",
+    "description": "Hotel",
+	"created": "3.1.2000 by SKLUF",
+	"project": "Congress in Poprad",
+	"value": 1050,
+	"category": "Invoices",
+	"status": "Waiting for payment"
+  },
+  {
+    "id": "202033",
+    "file": "a.pdf",
+    "description": "Letter",
+	"created": "10.1.2000 by SKLUF",
+	"project": "",
+	"value": 0,
+	"category": "Letters",
+	"status": "Archived"
+  }
+]
